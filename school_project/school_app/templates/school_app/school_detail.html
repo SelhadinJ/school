@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <h1>Welcome to School Project</h1>
+    <h2>School Detail</h2>
+    <p>Name: {{school.name}}</p>
+    <p>Principal: {{school.principal}}</p>
+    <p>Location: {{school.location}}</p>
+
+    <h3>Students:</h3>
+    {% for student in school.students.all %}
+        <p>{{student.name}} was born in {{student.dob}}.</p>
+        <a class="btn btn-outline-warning btn-sm" href="{% url 'school_app:stu_update' pk=student.pk %}">update</a>
+        <a class="btn btn-outline-danger btn-sm" href="{% url 'school_app:stu_delete' pk=student.pk %}">delete</a>
+    {% endfor %}
+    <br><br>
+    <a class="btn btn-outline-warning btn-lg" href="{% url 'school_app:update' pk=school.pk %}">Update</a>
+    <a class="btn btn-outline-danger btn-lg" href="{% url 'school_app:delete' pk=school.pk %}">Delete</a>
+{% endblock %}
